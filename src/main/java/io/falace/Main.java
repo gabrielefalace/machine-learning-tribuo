@@ -4,11 +4,9 @@ import java.io.IOException;
 
 public class Main {
 
-    static DataLoader dataLoader = new DataLoader();
-
     public static void main(String[] args) throws IOException {
-        var datasets = dataLoader.loadData("bezdekIris.data");
-        var model = dataLoader.trainModel(datasets.left);
-        dataLoader.evaluateModel(model, datasets.right);
+        var datasets = DataLoader.loadData("bezdekIris.data");
+        var model = ModelTrainer.trainModel(datasets.left);
+        ModelTester.evaluateModel(model, datasets.right);
     }
 }

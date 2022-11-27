@@ -18,7 +18,7 @@ import java.nio.file.Paths;
 
 public class DataLoader {
 
-    public ImmutablePair<MutableDataset, MutableDataset> loadData(String datasetPath) throws IOException {
+    static public ImmutablePair<MutableDataset, MutableDataset> loadData(String datasetPath) throws IOException {
         var labelFactory = new LabelFactory();
         var csvLoader = new CSVLoader<>(labelFactory);
 
@@ -40,17 +40,7 @@ public class DataLoader {
         return new ImmutablePair<>(trainingDataset, testingDataset);
     }
 
-    public Model<Label> trainModel(MutableDataset trainingDataset) {
-        Trainer<Label> trainer = new LogisticRegressionTrainer();
-        System.out.println(trainer);
-        Model<Label> irisModel = trainer.train(trainingDataset);
-        return irisModel;
-    }
 
-    public void evaluateModel(Model<Label> model, MutableDataset testDataset) {
-        var evaluator = new LabelEvaluator();
-        var evaluation = evaluator.evaluate(model,testDataset);
-        System.out.println(evaluation.toString());
-    }
+
 
 }
